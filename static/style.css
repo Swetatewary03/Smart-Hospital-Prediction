@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f8fc;
+    color: #263746;
+}
+
+header {
+    background: #087eaa;
+    color: white;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: bold;
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #087eaa, #38b6c9);
+    color: white;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background: white;
+    color: #087eaa;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#about, #features {
+    padding: 60px 10%;
+    text-align: center;
+}
+
+#about p {
+    margin-top: 20px;
+    line-height: 1.8;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000015;
+    min-width: 200px;
+}
+
+footer {
+    background: #087eaa;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* =================================
+   PREDICTION PAGE DESIGN
+================================= */
+
+.container {
+    max-width: 850px;
+    margin: 60px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+.container h1 {
+    text-align: center;
+    color: #087eaa;
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.container > p {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 35px;
+    font-size: 16px;
+}
+
+/* Prediction Form */
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+form label {
+    font-weight: bold;
+    color: #263746;
+    align-self: end;
+}
+
+form select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #f8fafc;
+    font-size: 15px;
+    outline: none;
+}
+
+form select:focus {
+    border-color: #087eaa;
+}
+
+form button {
+    grid-column: 1 / -1;
+    padding: 15px;
+    background: linear-gradient(135deg, #087eaa, #38b6c9);
+    color: white;
+    border: none;
+    border-radius: 9px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+form button:hover {
+    opacity: 0.9;
+}
+
+/* Prediction Results */
+
+.container > h2 {
+    color: #087eaa;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.result {
+    background: #f1f8fc;
+    padding: 20px;
+    margin: 15px 0;
+    border-left: 5px solid #087eaa;
+    border-radius: 10px;
+}
+
+.result h3 {
+    color: #087eaa;
+    margin-bottom: 8px;
+}
+
+.result p {
+    font-size: 16px;
+}
+
+/* Best Model Result */
+
+.best-result {
+    background: linear-gradient(135deg, #087eaa, #38b6c9);
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.best-result h2 {
+    margin-bottom: 12px;
+}
+
+.best-result h3 {
+    font-size: 22px;
+}
+
+/* Responsive Design */
+
+@media (max-width: 600px) {
+    .container {
+        margin: 20px 12px;
+        padding: 22px;
+    }
+
+    .container h1 {
+        font-size: 25px;
+    }
+
+    form {
+        grid-template-columns: 1fr;
+    }
+
+    form button {
+        grid-column: 1;
+    }
+}

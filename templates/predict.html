@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hospital Waiting Time Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Hospital Waiting Time Prediction</h1>
+        <p>Enter patient visit details to predict the waiting category.</p>
+
+        <form method="POST" action="/predict">
+
+            <label>Department</label>
+            <select name="Department" required>
+                <option value="">Select Department</option>
+                <option>Orthopedics</option>
+                <option>General Medicine</option>
+                <option>Emergency</option>
+                <option>Gynecology</option>
+                <option>Cardiology</option>
+                <option>Dermatology</option>
+                <option>Pediatrics</option>
+                <option>Neurology</option>
+            </select>
+
+            <label>Triage Level</label>
+            <select name="Triage_Level" required>
+                <option value="">Select Triage Level</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+
+            <label>Visit Type</label>
+            <select name="Visit_Type" required>
+                <option value="">Select Visit Type</option>
+                <option>Appointment</option>
+                <option>Walk-in</option>
+                <option>Emergency</option>
+            </select>
+
+            <label>Visit Day</label>
+            <select name="Visit_Day" required>
+                <option>Monday</option>
+                <option>Tuesday</option>
+                <option selected>Wednesday</option>
+                <option>Thursday</option>
+                <option>Friday</option>
+                <option>Saturday</option>
+                <option>Sunday</option>
+            </select>
+
+            <button type="submit">Predict Waiting Time</button>
+
+        </form>
+
+        {% if predictions %}
+
+        <h2>Prediction Results</h2>
+
+        {% for name, result in predictions.items() %}
+            <div class="result">
+                <h3>{{ name }}</h3>
+                <p>Predicted Category: <strong>{{ result }}</strong></p>
+            </div>
+        {% endfor %}
+
+        <div class="best-result">
+            <h2>Best Model: {{ best_model_name }}</h2>
+            <h3>Predicted Waiting Category: {{ best_prediction }}</h3>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
