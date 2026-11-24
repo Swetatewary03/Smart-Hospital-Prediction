@@ -1367,7 +1367,7 @@
 <option value="4">Level 4 - Less urgent</option>
 <option value="5">Level 5 - Non-urgent (lowest priority)</option>
 </select>
-<span class="text-[10px] text-slate-400">Level 1 is highest priority; Level 5 is lowest. Used by the classifier.</span>
+<span class="text-[10px] text-slate-400">Level 1 is highest priority; triage adjusts the demo ETA, while the classifier predicts the wait category.</span>
 </div>
 <!-- 8. Day of the Week -->
 <div class="space-y-1">
@@ -1544,11 +1544,11 @@
 <div class="bg-white dark:bg-brand-darkcard p-4 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-wrap items-center justify-between gap-3 text-xs">
 <div class="flex items-center gap-2">
 <span class="text-slate-400 font-semibold">Filter:</span>
-<button class="px-3 py-1 rounded-lg bg-brand-blue text-white font-bold">All Statuses</button>
-<button class="px-3 py-1 rounded-lg bg-emerald-50 dark:bg-slate-800 text-emerald-700 dark:text-emerald-400 font-semibold">Available (4)</button>
-<button class="px-3 py-1 rounded-lg bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-blue-300 font-semibold">Consulting (3)</button>
-<button class="px-3 py-1 rounded-lg bg-amber-50 dark:bg-slate-800 text-amber-700 dark:text-amber-400 font-semibold">On Break (1)</button>
-<button class="px-3 py-1 rounded-lg bg-rose-50 dark:bg-slate-800 text-rose-700 dark:text-rose-400 font-semibold">Unavailable (1)</button>
+<button aria-pressed="true" class="px-3 py-1 rounded-lg bg-brand-blue text-white font-bold ring-2 ring-blue-500" data-doctor-status-filter="all" type="button">All Statuses</button>
+<button aria-pressed="false" class="px-3 py-1 rounded-lg bg-emerald-50 dark:bg-slate-800 text-emerald-700 dark:text-emerald-400 font-semibold" data-doctor-status-filter="Available" type="button">Available (<span data-doctor-status-count="Available">4</span>)</button>
+<button aria-pressed="false" class="px-3 py-1 rounded-lg bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-blue-300 font-semibold" data-doctor-status-filter="Consulting" type="button">Consulting (<span data-doctor-status-count="Consulting">3</span>)</button>
+<button aria-pressed="false" class="px-3 py-1 rounded-lg bg-amber-50 dark:bg-slate-800 text-amber-700 dark:text-amber-400 font-semibold" data-doctor-status-filter="On Break" type="button">On Break (<span data-doctor-status-count="On Break">1</span>)</button>
+<button aria-pressed="false" class="px-3 py-1 rounded-lg bg-rose-50 dark:bg-slate-800 text-rose-700 dark:text-rose-400 font-semibold" data-doctor-status-filter="Unavailable" type="button">Unavailable (<span data-doctor-status-count="Unavailable">1</span>)</button>
 </div>
 <div class="flex items-center gap-2">
 <select class="py-1.5 px-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs" id="doctor-department-filter">
@@ -1568,7 +1568,7 @@
 <!-- 9 Doctor Clinician Cards Grid (Strict Zero 'Bay' Terminology) -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="doctor-availability-grid">
 <!-- Doctor Card 1: Dr. Robert Miller -->
-<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border-2 border-blue-500/50 shadow-sm flex flex-col justify-between" data-departments="Cardiology">
+<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border-2 border-blue-500/50 shadow-sm flex flex-col justify-between" data-departments="Cardiology" data-status="Consulting">
 <div>
 <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
 <div class="flex items-center gap-3">
@@ -1589,7 +1589,7 @@
 </div>
 </div>
 <!-- Doctor Card 2: Dr. Sarah Jenkins -->
-<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-col justify-between" data-departments="General Medicine">
+<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-col justify-between" data-departments="General Medicine" data-status="Available">
 <div>
 <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
 <div class="flex items-center gap-3">
@@ -1610,7 +1610,7 @@
 </div>
 </div>
 <!-- Doctor Card 3: Dr. David Kim -->
-<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-col justify-between" data-departments="Radiology &amp; Imaging|Neurology">
+<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-col justify-between" data-departments="Radiology &amp; Imaging|Neurology" data-status="Consulting">
 <div>
 <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
 <div class="flex items-center gap-3">
@@ -1631,7 +1631,7 @@
 </div>
 </div>
 <!-- Doctor Card 4: Dr. Elena Vance -->
-<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-col justify-between" data-departments="Emergency Triage">
+<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-col justify-between" data-departments="Emergency Triage" data-status="Available">
 <div>
 <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
 <div class="flex items-center gap-3">
@@ -1652,7 +1652,7 @@
 </div>
 </div>
 <!-- Doctor Card 5: Dr. Marcus Reed -->
-<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-col justify-between opacity-85" data-departments="Orthopedics">
+<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-col justify-between opacity-85" data-departments="Orthopedics" data-status="On Break">
 <div>
 <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
 <div class="flex items-center gap-3">
@@ -1673,7 +1673,7 @@
 </div>
 </div>
 <!-- Doctor Card 6: Dr. Angela Davis -->
-<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-col justify-between" data-departments="Pediatrics">
+<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-col justify-between" data-departments="Pediatrics" data-status="Available">
 <div>
 <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
 <div class="flex items-center gap-3">
@@ -1694,7 +1694,7 @@
 </div>
 </div>
 <!-- Doctor Card 7: Dr. Tariq Al-Mansoor -->
-<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-col justify-between" data-departments="Neurology">
+<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-col justify-between" data-departments="Neurology" data-status="Consulting">
 <div>
 <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
 <div class="flex items-center gap-3">
@@ -1715,7 +1715,7 @@
 </div>
 </div>
 <!-- Doctor Card 8: Dr. Sonia Patel -->
-<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-col justify-between opacity-80" data-departments="Dermatology">
+<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-col justify-between opacity-80" data-departments="Dermatology" data-status="Unavailable">
 <div>
 <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
 <div class="flex items-center gap-3">
@@ -1736,7 +1736,7 @@
 </div>
 </div>
 <!-- Doctor Card 9: Dr. James Wilson -->
-<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-col justify-between" data-departments="Pulmonology">
+<div class="bg-white dark:bg-brand-darkcard p-5 rounded-2xl border border-brand-borderlight dark:border-brand-borderdark shadow-xs flex flex-col justify-between" data-departments="Pulmonology" data-status="Available">
 <div>
 <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
 <div class="flex items-center gap-3">
@@ -1756,6 +1756,7 @@
 </div>
 </div>
 </div>
+<p class="hidden col-span-full rounded-xl bg-white dark:bg-brand-darkcard p-6 text-center text-sm text-slate-500" id="doctor-filter-empty" role="status">No doctors match these filters.</p>
 </div>
 </section>
 <!-- ========================================================================= -->
@@ -2188,16 +2189,50 @@
     };
 
     const doctorDepartmentFilter = document.getElementById('doctor-department-filter');
-    doctorDepartmentFilter.addEventListener('change', () => {
+    const doctorCards = Array.from(
+      document.querySelectorAll('#doctor-availability-grid [data-departments]')
+    );
+    const doctorStatusFilters = Array.from(
+      document.querySelectorAll('[data-doctor-status-filter]')
+    );
+    const doctorFilterEmpty = document.getElementById('doctor-filter-empty');
+    let selectedDoctorStatus = 'all';
+
+    document.querySelectorAll('[data-doctor-status-count]').forEach(count => {
+      count.textContent = doctorCards.filter(
+        card => card.dataset.status === count.dataset.doctorStatusCount
+      ).length;
+    });
+
+    function filterDoctorCards() {
       const selectedDepartment = doctorDepartmentFilter.value;
-      document.querySelectorAll('#doctor-availability-grid [data-departments]').forEach(card => {
+      let visibleCards = 0;
+      doctorCards.forEach(card => {
         const departments = card.dataset.departments.split('|');
-        card.classList.toggle(
-          'hidden',
-          selectedDepartment !== 'all' && !departments.includes(selectedDepartment)
-        );
+        const matchesStatus =
+          selectedDoctorStatus === 'all' || card.dataset.status === selectedDoctorStatus;
+        const matchesDepartment =
+          selectedDepartment === 'all' || departments.includes(selectedDepartment);
+        const isHidden = !matchesStatus || !matchesDepartment;
+        card.classList.toggle('hidden', isHidden);
+        if (!isHidden) visibleCards += 1;
+      });
+      doctorFilterEmpty.classList.toggle('hidden', visibleCards > 0);
+    }
+
+    doctorStatusFilters.forEach(button => {
+      button.addEventListener('click', () => {
+        selectedDoctorStatus = button.dataset.doctorStatusFilter;
+        doctorStatusFilters.forEach(filter => {
+          const isSelected = filter === button;
+          filter.setAttribute('aria-pressed', String(isSelected));
+          filter.classList.toggle('ring-2', isSelected);
+          filter.classList.toggle('ring-blue-500', isSelected);
+        });
+        filterDoctorCards();
       });
     });
+    doctorDepartmentFilter.addEventListener('change', filterDoctorCards);
 
     function switchView(targetKey) {
       if (!hasStaffQueueAccess && targetKey === 'admin-dashboard') {
@@ -2286,8 +2321,17 @@
 
     themeToggleBtn.addEventListener('click', () => {
       const isCurrentlyDark = htmlEl.classList.contains('dark');
-      applyTheme(!isCurrentlyDark);
+      const targetDark = !isCurrentlyDark;
+      applyTheme(targetDark);
+      try {
+        localStorage.setItem('carenova_theme', targetDark ? 'dark' : 'light');
+      } catch (e) {}
     });
+
+    try {
+      localStorage.setItem('carenova_theme', 'light');
+    } catch (e) {}
+    applyTheme(false);
 
     // --- 4. Notification & Profile Menu Dropdowns ---
     const notifBtn = document.getElementById('notif-btn');
@@ -2523,11 +2567,13 @@
       const waiting = Number.parseInt(document.getElementById('input-waiting-count').value, 10);
       const doctors = Number.parseInt(document.getElementById('input-doctors-count').value, 10);
       const duration = Number.parseInt(document.getElementById('input-consult-duration').value, 10);
+      const triageLevel = Number.parseInt(document.getElementById('input-triage-level').value, 10);
       const status = document.getElementById('prediction-status');
 
       if (!Number.isInteger(waiting) || waiting < 0 ||
           !Number.isInteger(doctors) || doctors < 1 ||
-          !Number.isInteger(duration) || duration < 1) {
+          !Number.isInteger(duration) || duration < 1 ||
+          !Number.isInteger(triageLevel) || triageLevel < 1 || triageLevel > 5) {
         document.getElementById('output-predicted-time').textContent = '--';
         document.getElementById('output-expected-time').textContent = '--';
         document.getElementById('output-threshold-percent').textContent = '0%';
@@ -2536,7 +2582,7 @@
         document.getElementById('output-patients-ahead').textContent = '--';
         setWaitCategory('Awaiting valid inputs');
         modelNameOutput.textContent = 'Backend classifier';
-        status.textContent = 'Enter a waiting count of 0 or more, and at least 1 doctor and 1 minute per consultation.';
+        status.textContent = 'Enter a waiting count of 0 or more, at least 1 doctor and 1 minute per consultation, and a triage level from 1 to 5.';
         return;
       }
 
@@ -2550,11 +2596,19 @@
         const [hours, minutes] = value.split(':').map(Number);
         return Math.max(0, hours * 60 + minutes - currentIstMinutes);
       };
-      let waitMins = Math.ceil((waiting * duration) / doctors);
+      const triageFactor = 1 + (triageLevel - 3) * 0.15;
+      const queueWaitMins = Math.ceil((waiting * duration * triageFactor) / doctors);
       const arrivalIn = minutesUntil(document.getElementById('input-arrival-time').value);
-      waitMins = Math.max(waitMins, arrivalIn);
-      if (activeAdmissionMode === 'scheduled') {
-        waitMins = Math.max(waitMins, minutesUntil(document.getElementById('input-appt-time').value));
+      let waitMins = Math.max(queueWaitMins, arrivalIn);
+      let waitFloorReason = arrivalIn > queueWaitMins
+        ? `Arrival time sets a ${arrivalIn}-minute minimum.`
+        : '';
+      if (activeAdmissionMode === 'scheduled' && triageLevel >= 3) {
+        const appointmentIn = minutesUntil(document.getElementById('input-appt-time').value);
+        if (appointmentIn > waitMins) {
+          waitMins = appointmentIn;
+          waitFloorReason = `The scheduled appointment sets a ${appointmentIn}-minute minimum.`;
+        }
       }
 
       document.getElementById('output-predicted-time').textContent = waitMins;
@@ -2582,7 +2636,6 @@
         pediatrics: 'Pediatrics',
       };
       const department = document.getElementById('input-dept').value;
-      const triageLevel = Number.parseInt(document.getElementById('input-triage-level').value, 10);
       const visitType = activeAdmissionMode === 'scheduled' ? 'Appointment' : 'Walk-in';
       const visitDay = document.getElementById('input-day-week').value;
       status.textContent = 'Requesting the wait category from the backend...';
@@ -2627,8 +2680,8 @@
         setWaitCategory(result.best_prediction);
         modelNameOutput.textContent = `${result.best_model_name} classifier`;
         document.getElementById('prediction-reasoning').innerHTML =
-          `<b class="text-slate-800 dark:text-slate-200">Prediction Reasoning:</b> The queue estimate uses ${waiting} patients ahead, ${doctors} available doctors, and a ${duration}-minute average consultation. The backend classifier predicts a ${result.best_prediction.toLowerCase()} wait category for ${departmentNames[department]}, triage level ${triageLevel}, ${visitType.toLowerCase()}, on ${visitDay}.`;
-        status.textContent = 'Wait category returned by the trained backend model. Minutes are a queue-based estimate.';
+          `<b class="text-slate-800 dark:text-slate-200">Prediction Reasoning:</b> The queue estimate uses ${waiting} patients ahead, ${doctors} available doctors, and a ${duration}-minute average consultation, adjusted by a ${triageFactor.toFixed(2)}× demo factor for triage level ${triageLevel}. ${triageLevel <= 2 ? 'Critical and emergency triage bypass scheduled appointment times.' : 'Scheduled appointment times remain a minimum wait for triage levels 3–5.'} ${waitFloorReason} The backend classifier predicts a ${result.best_prediction.toLowerCase()} wait category for ${departmentNames[department]}, ${visitType.toLowerCase()}, on ${visitDay}.`;
+        status.textContent = 'Wait category returned by the trained model. Minutes use a queue-based demo triage adjustment, which is not learned by the model.';
       } catch (error) {
         if (error.name === 'AbortError') return;
         setWaitCategory('Unavailable');
@@ -2676,8 +2729,6 @@
         markPredictionInputsChanged();
       });
     });
-    runMLPrediction();
-
     // --- 7. Indoor Wayfinder Map Logic & AR Simulation ---
     function changeWayfinderFloor(floorNumber) {
       const buttons = document.querySelectorAll('#wayfinder-floors button');

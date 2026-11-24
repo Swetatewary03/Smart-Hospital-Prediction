@@ -705,13 +705,13 @@
       showToast(`Switched to ${targetDark ? 'Dark' : 'Light'} Mode`, 'info');
     };
 
-    // Initialize: default to Dark mode per IMAGE_4 request
+    // Always open in Light mode. The user can still switch themes while the page is open.
     (function() {
       try {
-        const saved = localStorage.getItem('carenova_theme');
-        applyTheme(saved ? saved === 'dark' : true);
+        localStorage.setItem('carenova_theme', 'light');
+        applyTheme(false);
       } catch (e) {
-        applyTheme(true);
+        applyTheme(false);
       }
     })();
 
